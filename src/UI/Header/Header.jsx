@@ -2,12 +2,11 @@ import React, { useContext } from 'react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
 import { StoreContext } from '../../store/StoreContext';
-import { Link } from 'react-router-dom';
 import classes from './Header.module.css';
 
 function Header() {
   const { store, dispatch } = useContext(StoreContext);
-  const { authState, location, userInfo } = store;
+  const { authState, userInfo } = store;
 
   const logout = async (evt) => {
     evt.preventDefault();
@@ -22,17 +21,6 @@ function Header() {
       </h1>
       {authState && (
         <>
-          {location == '/' && (
-            <Link to="/archive" className={classes.link}>
-              Archive
-            </Link>
-          )}
-          {location == '/archive' && (
-            <Link to="/" className={classes.link}>
-              My notes
-            </Link>
-          )}
-
           <div className={classes.utilities}>
             <p className={classes.greeting}>
               Hi: {userInfo && userInfo.userName}

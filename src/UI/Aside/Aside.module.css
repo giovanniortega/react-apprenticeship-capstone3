@@ -1,0 +1,27 @@
+.aside-container {
+  background-color: var(--color-primary);
+  position: fixed;
+  top: 67px;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  z-index: 998;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.link:hover {
+  font-weight: 700;
+}
+
+@media (min-width: 769px) {
+  .aside-container {
+    width: 250px;
+    height: calc(100vh - 67px);
+    padding: 20px 10px;
+  }
+}
