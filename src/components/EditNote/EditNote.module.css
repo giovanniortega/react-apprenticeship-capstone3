@@ -1,0 +1,69 @@
+.edit-form {
+  width: 100%;
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 35px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.edit-title-input {
+  font-size: 30px;
+  border: none;
+  outline: none;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  width: 100%;
+  padding: 10px;
+  padding-right: 50px;
+  text-shadow: 0 0 2px rgba(0 0 0 / 80%);
+}
+
+.edit-title-input::placeholder {
+  color: rgba(255 255 255 / 50%);
+  font-size: 30px;
+}
+
+.edit-note-input {
+  resize: none;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 10px;
+  font-size: 18px;
+  font-family: "Nunito", sans-serif;
+  min-height: 100px;
+}
+
+.edit-form button {
+  width: 101%;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 0;
+  transform: translate(-0.5%, 2px);
+  position: absolute;
+  bottom: 0;
+}
+
+.color-input {
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  text-align: center;
+  width: 35px;
+}
+
+.color-input label {
+  color: var(--color-white);
+  display: block;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.color-input input {
+  width: 100%;
+}

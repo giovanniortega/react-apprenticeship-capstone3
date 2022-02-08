@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --color-primary: #437bdf;
+  --color-white: white;
+  --color-black: black;
+}
+
+html {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Nunito", sans-serif;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: rgba(0 0 0 0%);
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+  height: 100vh;
+  padding-top: 67px;
+}
+
+.app {
+  margin: 20px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+button {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  outline: inherit;
+  width: auto;
+  line-height: 1;
+  transition: all 100ms ease-in-out;
+  text-shadow: 0 0 2px rgba(0 0 0 / 80%);
+}
+
+button:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+  font-weight: 500;
+}
+
+button.secondary-btn {
+  background: var(--color-white);
+  border: 1px solid var(--color-white);
+  color: var(--color-primary);
+  text-shadow: none;
+}
+
+button.secondary-btn:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.centered {
+  text-align: center;
+}
+
+/* Form styles */
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form {
+  margin-bottom: 20px;
+}
+
+.form fieldset {
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.form-container button {
+  margin: 0 auto;
+  display: block;
+}
+
+.form-container button[disabled] {
+  opacity: 0.5;
+}
+
+.form-container button[disabled]:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.form-footnote {
+  font-size: 18px;
+  text-align: center;
+}
+
+.form-control {
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 10px;
+}
+
+.form-control input {
+  font-size: 18px;
+}
+
+.form-control label {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.form-control.invalid input {
+  background-color: rgba(255 0 0 / 10%);
+  border-color: red;
+}
+
+.form-control.invalid label {
+  color: red;
+}
+
+.error-text {
+  color: red;
+  margin: 0;
+}
