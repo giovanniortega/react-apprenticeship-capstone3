@@ -1,78 +1,100 @@
-import React, { useRef, useContext } from 'react';
-// import { collection, addDoc } from 'firebase/firestore';
-import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../../firebase/firebaseConfig';
-import { StoreContext } from '../../store/StoreContext';
+import React, { useState } from 'react';
+import useNoteAction from '../../utils/hooks/useNoteAction';
+import classes from './CreateNote.module.css';
 
 function CreateNote() {
-  const titleInputRef = useRef();
-  const noteInputRef = useRef();
-
-  const { store } = useContext(StoreContext);
-  const { authState } = store;
+  const { noteAction } = useNoteAction();
+  const [isAddNote, setIsAddNote] = useState(false);
+  const [titleInput, setTitleInput] = useState('');
+  const [noteInput, setNoteInput] = useState('');
+  const [noteColor, setNoteColor] = useState('#437bdf');
 
   const createNote = async (evt) => {
     evt.preventDefault();
-    console.log(authState.uid);
-    const noteId = new Date().getTime().toString();
-    // try {
-    //   await addDoc(collection(db, 'notes', authState.uid, 'userNotes'), {
-    //     title: titleInputRef.current.value,
-    //     note: noteInputRef.current.value,
-    //   });
-    //   // console.log('Document written with ID: ', note.id);
-    //   titleInputRef.current.value = '';
-    //   noteInputRef.current.value = '';
-    // } catch (error) {
-    //   console.error('Error adding document: ', error);
-    // }
 
-    try {
-      await setDoc(doc(db, 'notes', authState.uid, 'userNotes', noteId), {
-        id: noteId,
-        title: titleInputRef.current.value,
-        note: noteInputRef.current.value,
-      });
-      titleInputRef.current.value = '';
-      noteInputRef.current.value = '';
-    } catch (error) {
-      console.error('Error adding document: ', error);
+    const noteInputHtml = noteInput.replace(/\n\r?/g, '<br />');
+
+    const note = {
+      title: titleInput,
+      note: noteInputHtml,
+      color: noteColor,
+    };
+
+    if (titleInput !== '' || noteInput !== '') {
+      noteAction('createNote', note);
+      setTitleInput('');
+      setNoteInput('');
+      setNoteColor('#437bdf');
     }
 
-    // try {
-    //   await setDoc(doc(db, 'notes', authState.uid, 'usernotes', note.id), {
-    //     id: note.id
-    //   });
-    // } catch (error) {
-    //   console.error('Error adding document: ', error);
-    // }
+    setIsAddNote(false);
+  };
+
+  const createNoteHandler = () => {
+    setIsAddNote(true);
+  };
+
+  const inputBlur = (evt) => {
+    if (!evt.relatedTarget) {
+      setIsAddNote(false);
+      createNote(evt);
+    }
   };
 
   return (
     <>
-      <h1>CreateNote</h1>
-      <form onSubmit={createNote}>
-        <fieldset>
-          <div>
-            <label htmlFor="title-text">Title</label>
+      <form
+        onSubmit={createNote}
+        className={classes['createnote-form']}
+        style={{ borderColor: noteColor }}
+      >
+        {isAddNote && (
+          <>
             <input
               type="input"
               name="titleText"
               id="title-text"
-              ref={titleInputRef}
+              placeholder="Title"
+              value={titleInput}
+              className={classes['title-input']}
+              onChange={(evt) => setTitleInput(evt.target.value)}
+              onBlur={(evt) => {
+                inputBlur(evt);
+              }}
+              style={{ backgroundColor: noteColor }}
             />
-          </div>
-          <div>
-            <label htmlFor="note-text">Note</label>
-            <textarea
-              type="textbox"
-              name="titleText"
-              id="note-text"
-              ref={noteInputRef}
-            />
-          </div>
-          <button type="submit">Create Note</button>
-        </fieldset>
+            <div className={classes['color-input']}>
+              <label htmlFor="color-input">Color</label>
+              <input
+                type="color"
+                name="color-input"
+                id="color-input"
+                value={noteColor}
+                onChange={(evt) => setNoteColor(evt.target.value)}
+              />
+            </div>
+          </>
+        )}
+        <textarea
+          type="textbox"
+          name="titleText"
+          id="note-text"
+          placeholder="Take a note..."
+          value={noteInput}
+          className={classes['textarea-input']}
+          onChange={(evt) => setNoteInput(evt.target.value)}
+          onFocus={createNoteHandler}
+          onBlur={(evt) => {
+            inputBlur(evt);
+          }}
+        />
+        {isAddNote && (
+          <>
+            <button type="submit" style={{ backgroundColor: noteColor }}>
+              Close
+            </button>
+          </>
+        )}
       </form>
     </>
   );

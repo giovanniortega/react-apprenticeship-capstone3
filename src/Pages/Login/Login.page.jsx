@@ -6,7 +6,12 @@ function LoginPage() {
   const { store } = useContext(StoreContext);
   const { authState } = store;
 
-  return <>{!authState && <Login />}</>;
+  return (
+    <>
+      <h1 className="centered">Login</h1>
+      {!authState && <Login />}
+    </>
+  );
 }
 
 export default LoginPage;

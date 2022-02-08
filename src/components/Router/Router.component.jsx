@@ -9,6 +9,7 @@ import { StoreContext } from '../../store/StoreContext';
 function Router() {
   const { store } = useContext(StoreContext);
   const { authState } = store;
+
   return (
     <Routes>
       <Route

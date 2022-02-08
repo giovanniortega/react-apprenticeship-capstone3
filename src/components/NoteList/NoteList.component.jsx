@@ -1,85 +1,81 @@
 import React, { useState } from 'react';
 import useNoteAction from '../../utils/hooks/useNoteAction';
+import classes from './NoteList.module.css';
+import EditNote from '../EditNote/EditNote.component';
 
 const NoteList = ({ listData }) => {
   const { dataNoteList, isArchive } = listData;
   const [isEditForm, setIsEditForm] = useState(false);
-  const [editTitle, setEditTitle] = useState('');
-  const [editNote, setEditNote] = useState('');
-  const [editNoteId, setEditNoteId] = useState('');
+  const [editNoteData, setEditNoteData] = useState({});
 
   const { noteAction } = useNoteAction();
 
-  const saveEditedNote = async (e) => {
-    e.preventDefault();
-
-    const note = {
-      id: editNoteId,
-      title: editTitle,
-      note: editNote,
-    };
-
-    noteAction('updateNote', note);
-
+  const onClose = () => {
     setIsEditForm(false);
+    setEditNoteData({});
   };
 
   const editUserNote = (note) => {
-    setIsEditForm(true);
-    setEditTitle(note.title);
-    setEditNote(note.note);
-    setEditNoteId(note.id);
+    setEditNoteData({
+      id: note.id,
+      title: note.title,
+      note: note.note,
+      color: note.color,
+    });
+    setTimeout(() => {
+      setIsEditForm(true);
+    }, 300);
   };
 
   return (
     <>
-      <h1>Note List</h1>
-      {isEditForm && (
-        <form onSubmit={saveEditedNote}>
-          <input
-            type="text"
-            value={editTitle}
-            onChange={(e) => {
-              setEditTitle(e.target.value);
-            }}
-          />
-          <textarea
-            type="text"
-            value={editNote}
-            onChange={(e) => {
-              setEditNote(e.target.value);
-            }}
-          />
-          <button type="submit">Save</button>
-        </form>
-      )}
-      <ul>
+      {isEditForm && <EditNote onClose={onClose} noteData={editNoteData} />}
+
+      <ul className={classes['note-list']}>
         {dataNoteList &&
           dataNoteList.length > 0 &&
           dataNoteList.map((note) => (
-            <li key={note.id}>
-              <div onClick={() => editUserNote(note)}>
-                <h3>{note.title}</h3>
-                <p>{note.note}</p>
+            <li
+              key={note.id}
+              className={classes.note}
+              style={{ borderColor: note.color }}
+            >
+              <div onClick={() => !isArchive && editUserNote(note)}>
+                {note.title && (
+                  <h3
+                    className={classes['note-title']}
+                    style={{ backgroundColor: note.color }}
+                  >
+                    {note.title}
+                  </h3>
+                )}
+                <p
+                  className={classes['note-text']}
+                  dangerouslySetInnerHTML={{ __html: note.note }}
+                />
               </div>
-              <button
-                type="button"
-                onClick={() => {
-                  !isArchive
-                    ? noteAction('archiveNote', note)
-                    : noteAction('deleteNote', note);
-                }}
-              >
-                {!isArchive ? 'Archive Note' : 'Delete Note'}
-              </button>
-              {isArchive && (
+              <div className={classes['note-actions']}>
                 <button
                   type="button"
-                  onClick={() => noteAction('restoreNote', note)}
+                  onClick={() => {
+                    !isArchive
+                      ? noteAction('archiveNote', note)
+                      : noteAction('deleteNote', note);
+                  }}
+                  style={{ backgroundColor: note.color }}
                 >
-                  Restore Note
+                  {!isArchive ? 'Archive Note' : 'Delete Note'}
                 </button>
-              )}
+                {isArchive && (
+                  <button
+                    type="button"
+                    onClick={() => noteAction('restoreNote', note)}
+                    style={{ backgroundColor: note.color }}
+                  >
+                    Restore Note
+                  </button>
+                )}
+              </div>
             </li>
           ))}
       </ul>

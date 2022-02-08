@@ -7,7 +7,7 @@ function RegisterPage() {
   const { authState } = store;
   return (
     <>
-      <h1>RegisterPage</h1>
+      <h1 className="centered">Register</h1>
       {!authState && <Register />}
     </>
   );

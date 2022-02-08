@@ -1,0 +1,76 @@
+.createnote-form {
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  max-width: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 3px 3px 0 rgba(0 0 0 / 50%);
+}
+
+.title-input {
+  font-size: 30px;
+  border: none;
+  outline: none;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  width: 100%;
+  padding: 10px;
+  padding-right: 50px;
+  text-shadow: 0 0 2px rgba(0 0 0 / 80%);
+}
+
+.title-input::placeholder {
+  color: var(--color-white);
+  font-size: 30px;
+}
+
+.title-input:-webkit-autofill {
+  appearance: none !important;
+  background-color: var(--color-primary) !important;
+}
+
+.textarea-input {
+  resize: none;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 15px 10px 0;
+  font-size: 18px;
+  line-height: 18px;
+  font-family: "Nunito", sans-serif;
+  display: block;
+}
+
+.textarea-input::placeholder {
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.color-input {
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  text-align: center;
+  width: 35px;
+}
+
+.color-input label {
+  color: var(--color-white);
+  display: block;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.color-input input {
+  width: 100%;
+}
+
+.createnote-form button {
+  width: 101%;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 0;
+  transform: translate(-0.5%, 2px);
+}

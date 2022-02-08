@@ -31,6 +31,7 @@ function useNoteAction() {
             id: !updateDocument ? newNoteId : note.id,
             title: note.title,
             note: note.note,
+            color: note.color,
           }
         );
       }
@@ -46,6 +47,9 @@ function useNoteAction() {
 
   const noteAction = (action, note) => {
     switch (action) {
+      case 'createNote':
+        actionFunction(note, true, 'userNotes', false, '', false);
+        break;
       case 'archiveNote':
         actionFunction(
           note,

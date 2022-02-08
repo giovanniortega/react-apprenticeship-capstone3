@@ -2,6 +2,8 @@ const initialStore = {
   authState: null,
   noteList: [],
   archiveNoteList: [],
+  location: '',
+  userInfo: {},
 };
 
 const storeReducer = (state, action) => {
@@ -20,6 +22,16 @@ const storeReducer = (state, action) => {
       return {
         ...state,
         archiveNoteList: action.payload,
+      };
+    case 'setLocation':
+      return {
+        ...state,
+        location: action.payload,
+      };
+    case 'setUserInfo':
+      return {
+        ...state,
+        userInfo: action.payload,
       };
     default:
       return state;
