@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
+import { StoreContext } from '../../store/StoreContext';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
-import { StoreContext } from '../../store/StoreContext';
+import { FaPowerOff } from 'react-icons/fa';
 import classes from './Header.module.css';
 
 function Header() {
@@ -25,8 +26,9 @@ function Header() {
             <p className={classes.greeting}>
               Hi: {userInfo && userInfo.userName}
             </p>
-            <button type="button" onClick={logout} className="secondary-btn">
-              Sign Out
+            <button type="button" onClick={logout}>
+              <FaPowerOff />
+              <span>Sign Out</span>
             </button>
           </div>
         </>

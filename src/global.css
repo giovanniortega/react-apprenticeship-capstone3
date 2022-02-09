@@ -41,24 +41,40 @@ body {
   box-sizing: inherit;
 }
 
+h1 {
+  line-height: 1;
+}
+
 button {
   background: var(--color-primary);
   color: var(--color-white);
   border: none;
   border-radius: 5px;
   padding: 5px;
-  font-size: 14px;
+  font-size: 18px;
   cursor: pointer;
   outline: inherit;
   width: auto;
   line-height: 1;
   transition: all 100ms ease-in-out;
   text-shadow: 0 0 2px rgba(0 0 0 / 80%);
+  position: relative;
+}
+
+button span {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: darkgrey;
+  padding: 3px;
+  border-radius: 5px;
+  font-size: 14px;
+  display: none;
 }
 
 button:hover {
-  opacity: 0.8;
-  transform: scale(1.05);
+  opacity: 0.9;
   font-weight: 500;
 }
 
@@ -150,5 +166,9 @@ button.secondary-btn:hover {
 
   .content-container {
     padding-left: 250px;
+  }
+
+  button:hover span {
+    display: block;
   }
 }

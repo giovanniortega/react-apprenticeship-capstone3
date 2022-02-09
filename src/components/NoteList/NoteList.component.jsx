@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import useNoteAction from '../../utils/hooks/useNoteAction';
-import classes from './NoteList.module.css';
 import EditNote from '../EditNote/EditNote.component';
+import { FaArchive, FaFileExcel, FaFileUpload } from 'react-icons/fa';
+import classes from './NoteList.module.css';
 
 const NoteList = ({ listData }) => {
   const { dataNoteList, isArchive } = listData;
@@ -55,6 +56,18 @@ const NoteList = ({ listData }) => {
                 />
               </div>
               <div className={classes['note-actions']}>
+                {isArchive && (
+                  <button
+                    type="button"
+                    onClick={() => noteAction('restoreNote', note)}
+                    style={{ backgroundColor: note.color }}
+                  >
+                    <>
+                      <FaFileUpload />
+                      <span>Restore</span>
+                    </>
+                  </button>
+                )}
                 <button
                   type="button"
                   onClick={() => {
@@ -64,17 +77,18 @@ const NoteList = ({ listData }) => {
                   }}
                   style={{ backgroundColor: note.color }}
                 >
-                  {!isArchive ? 'Archive Note' : 'Delete Note'}
+                  {!isArchive ? (
+                    <>
+                      <FaArchive />
+                      <span>Archive</span>
+                    </>
+                  ) : (
+                    <>
+                      <FaFileExcel />
+                      <span>Delete</span>
+                    </>
+                  )}
                 </button>
-                {isArchive && (
-                  <button
-                    type="button"
-                    onClick={() => noteAction('restoreNote', note)}
-                    style={{ backgroundColor: note.color }}
-                  >
-                    Restore Note
-                  </button>
-                )}
               </div>
             </li>
           ))}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useNoteAction from '../../utils/hooks/useNoteAction';
+import { FaSave } from 'react-icons/fa';
 import classes from './CreateNote.module.css';
 
 function CreateNote() {
@@ -91,7 +92,8 @@ function CreateNote() {
         {isAddNote && (
           <>
             <button type="submit" style={{ backgroundColor: noteColor }}>
-              Close
+              <FaSave />
+              <span>Save</span>
             </button>
           </>
         )}

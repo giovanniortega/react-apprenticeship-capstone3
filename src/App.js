@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Header from './UI/Header/Header';
-import Router from './components/Router/Router.component';
 import { StoreContext } from './store/StoreContext';
 import { onAuthStateChanged } from 'firebase/auth';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { auth, db } from './firebase/firebaseConfig';
+import Header from './UI/Header/Header';
+import Router from './components/Router/Router.component';
 import useGetNotes from './utils/hooks/useGetNotes';
 
 function App() {
