@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { StoreContext } from '../../store/StoreContext';
 import HomePage from '../../Pages/Home/Home.page';
 import LoginPage from '../../Pages/Login/Login.page';
 import RegisterPage from '../../Pages/Register/Register.page';
 import ArchivePage from '../../Pages/Archive/Archive.page';
-import { StoreContext } from '../../store/StoreContext';
 
 function Router() {
   const { store } = useContext(StoreContext);

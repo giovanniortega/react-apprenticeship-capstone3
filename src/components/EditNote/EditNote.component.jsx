@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../../UI/Modal/Modal';
 import useNoteAction from '../../utils/hooks/useNoteAction';
+import { FaSave } from 'react-icons/fa';
 import classes from './EditNote.module.css';
 
 const EditNote = ({ noteData, onClose }) => {
@@ -79,7 +80,8 @@ const EditNote = ({ noteData, onClose }) => {
             }}
           />
           <button type="submit" style={{ backgroundColor: editColor }}>
-            Save
+            <FaSave />
+            <span>Save</span>
           </button>
         </form>
       </Modal>

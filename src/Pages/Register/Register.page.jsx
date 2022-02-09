@@ -1,14 +1,11 @@
-import React, { useContext } from 'react';
-import { StoreContext } from '../../store/StoreContext';
+import React from 'react';
 import Register from '../../components/Register/Register.component';
 
 function RegisterPage() {
-  const { store } = useContext(StoreContext);
-  const { authState } = store;
   return (
     <>
       <h1 className="centered">Register</h1>
-      {!authState && <Register />}
+      <Register />
     </>
   );
 }

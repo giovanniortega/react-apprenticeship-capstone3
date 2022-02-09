@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import Search from '../../components/Search/Search.component';
-import { StoreContext } from '../../store/StoreContext';
 import { Link } from 'react-router-dom';
+import { StoreContext } from '../../store/StoreContext';
+import Search from '../../components/Search/Search.component';
 import classes from './Aside.module.css';
 
 const Aside = () => {

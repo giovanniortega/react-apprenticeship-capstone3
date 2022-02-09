@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/firebaseConfig';
-import { Link } from 'react-router-dom';
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../../firebase/firebaseConfig';
+import { Link } from 'react-router-dom';
+import { auth, db } from '../../firebase/firebaseConfig';
 import useInput from '../../utils/hooks/useInput';
 
 function Register() {

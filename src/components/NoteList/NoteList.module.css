@@ -59,6 +59,7 @@
 .note-actions button {
   flex-grow: 1;
   border-radius: 0;
+  font-size: 18px;
 }
 
 @media (min-width: 769px) {
