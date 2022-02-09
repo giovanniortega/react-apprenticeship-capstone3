@@ -46,7 +46,7 @@ function Search() {
   const formClear = (evt) => {
     evt && evt.preventDefault();
     setInputValue('');
-    dispatch({ type: setNotesAction, payload: noteListCloned });
+    dispatch({ type: setNotesAction, payload: arrayToFilter });
   };
 
   useEffect(() => {
