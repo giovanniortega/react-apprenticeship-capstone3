@@ -5,15 +5,15 @@
 .note-list {
   width: 100%;
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
   list-style: none;
-  justify-content: center;
+  justify-content: space-between;
   margin: 0;
   padding: 0;
 }
 
 .note {
-  width: 100%;
+  width: 48%;
   border: 1px solid var(--color-primary);
   margin: 10px 0;
   border-radius: 5px;

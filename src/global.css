@@ -28,7 +28,7 @@ body {
   overflow-x: hidden;
   position: relative;
   height: 100vh;
-  padding-top: 67px;
+  padding-top: 155px;
 }
 
 .app {
@@ -141,4 +141,14 @@ button.secondary-btn:hover {
 .error-text {
   color: red;
   margin: 0;
+}
+
+@media (min-width: 769px) {
+  body {
+    padding-top: 67px;
+  }
+
+  .content-container {
+    padding-left: 250px;
+  }
 }

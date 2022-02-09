@@ -61,6 +61,9 @@ const EditNote = ({ noteData, onClose }) => {
               id="color-input"
               value={editColor}
               onChange={(evt) => setEditColor(evt.target.value)}
+              onBlur={(evt) => {
+                inputBlur(evt);
+              }}
             />
           </div>
           <textarea

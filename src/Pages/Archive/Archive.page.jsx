@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import NoteList from '../../components/NoteList/NoteList.component';
 import { StoreContext } from '../../store/StoreContext';
+import Aside from '../../UI/Aside/Aside';
 
 function ArchivePage() {
   const { store, dispatch } = useContext(StoreContext);
@@ -13,16 +14,19 @@ function ArchivePage() {
 
   return (
     <>
-      <h1 className="centered">
-        {dataNoteList.length == 0
-          ? 'Archive empty!'
-          : `You have ${dataNoteList.length} archived note${
-              dataNoteList.length > 1 ? 's' : ''
-            }`}
-      </h1>
-      {authState && dataNoteList.length > 0 && (
-        <NoteList listData={{ dataNoteList, isArchive }} />
-      )}
+      <Aside />
+      <div className="content-container">
+        <h1 className="centered">
+          {dataNoteList.length == 0
+            ? 'Archive empty!'
+            : `You have ${dataNoteList.length} archived note${
+                dataNoteList.length > 1 ? 's' : ''
+              }`}
+        </h1>
+        {authState && dataNoteList.length > 0 && (
+          <NoteList listData={{ dataNoteList, isArchive }} />
+        )}
+      </div>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Header from './components/Header/Header.component';
+import Header from './UI/Header/Header';
 import Router from './components/Router/Router.component';
 import { StoreContext } from './store/StoreContext';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -9,7 +9,7 @@ import useGetNotes from './utils/hooks/useGetNotes';
 
 function App() {
   const { store, dispatch } = useContext(StoreContext);
-  const { authState } = store;
+  const { authState, location } = store;
   const { getNotes, getUserInfo } = useGetNotes();
   const [printApp, setPrintApp] = useState(false);
 
@@ -34,7 +34,7 @@ function App() {
         getUserInfo(authState.uid);
       });
     }
-  }, [getNotes, getUserInfo, authState]);
+  }, [getNotes, getUserInfo, authState, location]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -47,7 +47,9 @@ function App() {
       {printApp ? (
         <>
           <Header />
-          <Router />
+          <main>
+            <Router />
+          </main>
         </>
       ) : (
         <p>Loading...</p>
